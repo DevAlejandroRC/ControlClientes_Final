@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="tiles/layout :: head">
+        <title>[[#{slash.title}]]</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="tiles/layout :: header"></header>
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row"></div>
+            </div>
+        </section>
+        <div th:if="${persons != null and !persons.empty}">
+            <table class="table table-hover table-bordered ">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th>[[#{form.name}]]</th>
+                        <th>[[#{form.lastname}]]</th>
+                        <th>[[#{form.email}]]</th>
+                        <th>[[#{form.phone}]]</th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{botton.edit}]]</th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{botton.remove}]]</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="person : ${persons}">
+                        <td th:text="${person.name}">[[#{ename}]]</td>
+                        <td th:text="${person.lastname}">[[#{elastname}]]</td>
+                        <td th:text="${person.email}">[[#{eemail}]]</td>
+                        <td th:text="${person.phone}">[[#{ephone}]]</td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  class="my-1 mx-2 btn btn-warning" th:href="@{/edit/} + ${person.idperson}"><i class="fa-solid fa-pen"></i> [[#{botton.edit}]]</a></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a  class="my-1 mx-2 btn btn-danger" th:href="@{/remove(idperson=${person.idperson})}"><i class="fa-solid fa-trash-can"></i> [[#{botton.remove}]]</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${persons == null or persons.empty}">
+            <p>[[#{eempty}]]</p>
+        </div>
+        <p><a class="my-3 mx-2 btn btn-info" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/add}"><i class="fa-solid fa-address-card"></i> [[#{botton.add}]]</a></p>
+        <footer th:replace="tiles/layout :: footer"></footer>
+    </body>
+</html>

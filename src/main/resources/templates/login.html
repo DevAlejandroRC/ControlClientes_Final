@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="tiles/layout :: head">
+        <title>[[#{botton.session}]]</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="tiles/layout :: header"></header>
+
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row"></div>
+            </div>
+        </section>
+        <section id="login" >
+            <div class="container">
+                <div class="row">
+                    <div class="cel-md-6 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>[[#{botton.session}]]</h2>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/login}" method="post">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">[[#{form.usuer}]]</label>
+                                        <input type="text" id="username" name="username" placeholder="Username" class="form-control"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">[[#{form.password}]]</label>
+                                        <input type="password" id="pasword" name="password" placeholder="Password" class="form-control"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">[[#{botton.session}]]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer th:replace="tiles/layout :: footer"></footer>
+    </body>
+</html>

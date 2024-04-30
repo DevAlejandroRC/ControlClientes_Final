@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="tiles/layout :: head">
+        <title>[[#{layout.subtitle}]]</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <header th:replace="tiles/layout :: header"></header>
+
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row"></div>
+            </div>
+        </section>
+
+        <section id="formulary">
+            <div class="container">
+                <div class="row">
+                    <div class="cel-md-6 mx-auto">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>[[#{layout.subtitle}]]</h2>
+                                <p><a class="btn btn-secondary " th:href="@{/}"><i class="fa-solid fa-left-long"></i> [[#{botton.return}]]</a></p>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/save}" method="post" th:object="${person}">
+                                    <input type="hidden" name="id" th:field="*{idperson}"/>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">[[#{form.name}]]:</label>
+                                        <input type="text" name="name" th:field="*{name}" class="form-control"/>
+                                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">[[#{efname}]]</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">[[#{form.lastname}]]:</label>
+                                        <input type="text" name="lastname" th:field="*{lastname}" class="form-control"/>
+                                        <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">[[#{eflastname}]]</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">[[#{form.email}]]:</label>
+                                        <input type="text" name="email" th:field="*{email}" class="form-control"/>
+                                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">[[#{efemail}]]</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">[[#{form.phone}]]:</label>
+                                        <input type="tel" name="phone" th:field="*{phone}" class="form-control"/>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> [[#{botton.save}]]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer th:replace="tiles/layout :: footer"></footer>
+    </body>
+</html>

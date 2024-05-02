@@ -1,5 +1,6 @@
 ## About
 User management application with administrator and client profiles. Allows viewing, editing, deleting, and updating users based on assigned permissions.
+
 ![view_project](https://github.com/DevAlejandroRC/ControlClientes_Final/assets/53066396/a5614fb3-e568-497d-bcf8-e8d73c3f4466)
 
 ## Technologies
